@@ -1,0 +1,18 @@
+
+bool preorder(BinaryTreeNode<int>* root1, BinaryTreeNode<int>* root2){
+    if(root1==NULL && root2==NULL) return true;
+     if(root1==NULL && root2!=NULL)return false;
+    if(root1!=NULL && root2==NULL)return false;
+    
+    bool flag1=(root1->data==root2->data)&&preorder(root1->left,root2->left);
+    bool flag2=(root1->data==root2->data)&&preorder(root1->right,root2->right);
+
+    return (flag1 && flag2);
+}
+bool identicalTrees(BinaryTreeNode<int>* root1, BinaryTreeNode<int>* root2) {
+   if(root1==NULL && root2!=NULL)return false;
+   if(root1!=NULL && root2==NULL)return false;
+   
+   return preorder(root1,root2);
+
+}
